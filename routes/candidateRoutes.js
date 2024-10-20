@@ -146,7 +146,7 @@ router.get('/vote/count',jwtAuthMiddleware,async (req, res) => {
 });
 
 
-router.get('/',async (req, res) => {
+router.get('/',jwtAuthMiddleware,async (req, res) => {
     try {
         const candidates = await Candidate.find({}, 'name party age _id');
         res.status(200).json(candidates);
