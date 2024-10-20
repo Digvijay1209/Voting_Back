@@ -3,11 +3,7 @@ const cors = require('cors');
 const db = require('./db');
 
 const app=express();
-app.use(cors({
-    origin: 'https://voting-full-stack.vercel.app/', 
-    methods: ['GET', 'POST', 'PUT', 'DELETE','PATCH'], 
-    credentials: true, 
-}));
+app.use(cors());
 require('dotenv').config();
 const bodyParser=require('body-parser');
 
