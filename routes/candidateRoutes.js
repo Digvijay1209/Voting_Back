@@ -7,7 +7,7 @@ const Candidate = require('../models/candidate');
 
 const checkAdminRole = async (userID) => {
     try {
-        const user = await User.findById(userID); // Corrected
+        const user = await User.findById(userID); 
         if (user.role === 'admin') return true;
     } catch (err) {
         return false;
@@ -16,7 +16,7 @@ const checkAdminRole = async (userID) => {
 
 router.post('/', jwtAuthMiddleware, async (req, res) => {
     try {
-        if (!(await checkAdminRole(req.user.id))) // Added await
+        if (!(await checkAdminRole(req.user.id)))
             return res.status(403).json({ message: 'user does not have admin role' });
             const { party } = req.body; 
 
@@ -39,7 +39,7 @@ router.post('/', jwtAuthMiddleware, async (req, res) => {
 
 router.put('/:candidateID', jwtAuthMiddleware, async (req, res) => {
     try {
-        if (!(await checkAdminRole(req.user.id))) // Added await
+        if (!(await checkAdminRole(req.user.id))) 
             return res.status(403).json({ message: 'user does not have admin role' });
 
         const candidateID = req.params.candidateID;
@@ -63,7 +63,7 @@ router.put('/:candidateID', jwtAuthMiddleware, async (req, res) => {
 
 router.delete('/:candidateID', jwtAuthMiddleware, async (req, res) => {
     try {
-        if (!(await checkAdminRole(req.user.id))) // Added await
+        if (!(await checkAdminRole(req.user.id))) 
             return res.status(403).json({ message: 'user does not have admin role' });
 
         const candidateID = req.params.candidateID;
